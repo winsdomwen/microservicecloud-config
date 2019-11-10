@@ -1,0 +1,75 @@
+spring:
+  profiles:
+  active:
+  - dev 
+---
+server:
+  port: 8001
+spring:
+  profiles: dev   
+  application:
+    name: microservicecloud-config-dept-client
+  datasource:
+    url: jdbc:mysql://localhost:3306/cloudDB01?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8&useSSL=true 
+    username: root
+    password: 123456
+    type: com.alibaba.druid.pool.DruidDataSource         #当前数据源操作类型
+    driver-class-name: org.gjt.mm.mysql.Driver           #mysql驱动包
+    dbcp2:
+       min-idle: 5                                 #数据库连接池的最小
+       initial-size: 5                             #初始化连接数
+       max-total: 5                                #最大连接数
+       max-wait-millis: 200                        #等待连接获取的最大超时时间
+mybatis:
+   config-location: classpath:mybatis/mybatis.cfg.xml        #mybatis配置文件所在路径
+   type-aliases-package: com.tit.springcloud.entity          #所有Entity别名类所在包
+   mapper-locations: mybatis/mapper/**/*.xml        #mapper映射文件
+eureka:
+  instance:
+    hostname: eureka7001.com    # eureka 服务器端的实例名称
+  client:
+    register-with-eureka: false  # false 标识不向注册公司注册自己
+    fetch-registry: false  # false 标识自己及时注册中心，我的职责就是维护服务实例。并不需要检索服务
+    service-url:
+        defaultZone: http://eureka7001.com:7001/eureka/  # 设置与eureka server交互的地址查询服务和注册服务
+info:
+  app.name: microservicecloud
+  company.name: www.baidu.com
+  build.artifactId: $project.artifactId$
+  build.version: $project.version$
+
+---
+server:
+  port: 8002
+spring:
+  profiles: test   
+  application:
+    name: microservicecloud-config-dept-client
+  datasource:
+    url: jdbc:mysql://localhost:3306/cloudDB02?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8&useSSL=true 
+    username: root
+    password: 123456
+    type: com.alibaba.druid.pool.DruidDataSource         #当前数据源操作类型
+    driver-class-name: org.gjt.mm.mysql.Driver           #mysql驱动包
+    dbcp2:
+       min-idle: 5                                 #数据库连接池的最小
+       initial-size: 5                             #初始化连接数
+       max-total: 5                                #最大连接数
+       max-wait-millis: 200                        #等待连接获取的最大超时时间
+mybatis:
+   config-location: classpath:mybatis/mybatis.cfg.xml        #mybatis配置文件所在路径
+   type-aliases-package: com.tit.springcloud.entity          #所有Entity别名类所在包
+   mapper-locations: mybatis/mapper/**/*.xml        #mapper映射文件
+eureka:
+  instance:
+    hostname: eureka7001.com    # eureka 服务器端的实例名称
+  client:
+    register-with-eureka: false  # false 标识不向注册公司注册自己
+    fetch-registry: false  # false 标识自己及时注册中心，我的职责就是维护服务实例。并不需要检索服务
+    service-url:
+        defaultZone: http://eureka7001.com:7001/eureka/  # 设置与eureka server交互的地址查询服务和注册服务
+info:
+  app.name: microservicecloud
+  company.name: www.baidu.com
+  build.artifactId: $project.artifactId$
+  build.version: $project.version$
